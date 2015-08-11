@@ -1,0 +1,44 @@
+{
+  "name": "mngen",
+  "version": "0.1.0",
+  "description": "Mnemonic Word Generator. Generate words that are easy to read/say/understand/remember.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "author": {
+    "name": "Even Brenna",
+    "email": "evenbrenna@gmail.com"
+  },
+  "license": "MIT",
+  "repository": "evenbrenna/mngen",
+  "bin": {
+    "mngen": "cli.js"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "files": [
+    "index.js",
+    "cli.js",
+    "words.json"
+  ],
+  "keywords": [
+    "cli-app",
+    "cli",
+    "bin",
+    "word",
+    "words",
+    "list",
+    "array",
+    "json",
+    "random",
+    "mnemonic"
+  ],
+  "dependencies": {
+    "meow": "^3.3.0"
+  },
+  "devDependencies": {
+    "ava": "0.0.4"
+  }
+}
