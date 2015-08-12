@@ -49,14 +49,18 @@ mnGen.word(3); // => "office-piano-fabric"
 ```
 
 
-### .list([length], [numCombine])
+### .list([length, [numCombine]])
 
 Returns: `Array`
 
 * Get an array of random words.
-* Default length is 100
-* One word (or word-combo) will not appear twice in the same array.
-* Give an integer to make the 'words' dash-joined combos of multiple words.
+* Default `length` is 100
+* Array entries are unique.
+* Specify `numCombine` to make entries dash-joined combos of multiple words.
+* Max list `length` is 1633 (number of words in word list). This is to avoid
+  very slow factorial calculations that would be needed to ensure that the
+  number of possible permutations (given numCombine) is greater than the
+  given length. 
 
 ```js
 nmGen.list();     // => An array of 100 unique words
@@ -87,7 +91,7 @@ $ mngen --list 2 --glue 3
 
 ## TODO
 
-* Raise error if list length > possible unique words/combinations
+* Research efficient way to calculate possible permutations for large lists.
 
 ## Thanks
 

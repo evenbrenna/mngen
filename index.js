@@ -6,7 +6,7 @@ var getRandomWord = function() {
   return words[Math.floor(Math.random() * words.length)];
 };
 
-// Join to words with a dash. False if word already contains newWord.
+// Join two words with a dash. False if word already contains newWord.
 var dashJoin = function(word, newWord) {
   if (word.indexOf(newWord) > -1) { return false; }
   return word + '-' + newWord;
@@ -30,20 +30,25 @@ var word = function(numCombine) {
 
 // Get an array of unique words / word-combos
 var list = function(length, numCombine) {
+
+  if (length > words.length) {
+    throw new Error('Max list size is ' + words.length);
+  }
+
   length = length || 100;
   numCombine = numCombine || 1;
 
-  var wordArray = [];
+  var returnWords = [];
 
   for (var i = 0; i < length; i++) {
     var newWord = word(numCombine);
-    if (wordArray.indexOf(newWord) === -1) {
-      wordArray.push(newWord);
+    if (returnWords.indexOf(newWord) === -1) {
+      returnWords.push(newWord);
     } else {
       i--;
     }
   }
-  return wordArray;
+  return returnWords;
 };
 
 exports.word = word;
