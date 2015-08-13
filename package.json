@@ -1,6 +1,6 @@
 {
   "name": "mngen",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "description": "Mnemonic Word Generator. Generate words that are easy to read/say/understand/remember.",
   "main": "index.js",
   "scripts": {

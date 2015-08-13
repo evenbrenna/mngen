@@ -31,17 +31,19 @@ mnGen.word(3);    // => "office-piano-fabric"
 
 mnGen.list(3);    // => ['canoe', 'amigo', 'kermit']
 mnGen.list(3, 2); // => ['fuji-visa', 'kilo-lemon', 'baker-echo']
+
+mngen.list(2665057, 2); // => ERR: Max list length for [glue] === 2 is 2665056
 ```
 
 ## API
 
 
-### .word([numCombine])
+### .word([glue])
 
 Returns: `String`
 
 * Get a single random word
-* Give an integer to make it a dash-joined combo of multiple words.
+* Give an integer `glue` to make it a dash-joined combo of multiple words.
 
 ```js
 mnGen.word();  // => "eagle"
@@ -49,18 +51,16 @@ mnGen.word(3); // => "office-piano-fabric"
 ```
 
 
-### .list([length, [numCombine]])
+### .list([length, [glue]])
 
 Returns: `Array`
 
 * Get an array of random words.
 * Default `length` is 100
 * Array entries are unique.
-* Specify `numCombine` to make entries dash-joined combos of multiple words.
-* Max list `length` is 1633 (number of words in word list). This is to avoid
-  very slow factorial calculations that would be needed to ensure that the
-  number of possible permutations (given numCombine) is greater than the
-  given length. 
+* Specify `glue` to make entries dash-joined combos of multiple words.
+* Throws error if `length` > possible unique entries given `glue`
+  (See Usage for example)
 
 ```js
 nmGen.list();     // => An array of 100 unique words
@@ -88,10 +88,12 @@ $ mngen --list 2 --glue 3
 # => oxford-soviet-rubber shave-deal-freddie
 
 ```
-
 ## TODO
 
-* Research efficient way to calculate possible permutations for large lists.
+* Add options:
+   * Choose "glue" character
+   * Choose entry separator for list in cli (comma, newline, space, etc)
+   * Custom word-lists
 
 ## Thanks
 

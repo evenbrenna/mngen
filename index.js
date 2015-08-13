@@ -12,14 +12,25 @@ var dashJoin = function(word, newWord) {
   return word + '-' + newWord;
 };
 
+// Calculate number of possible unique list items given combos of n words
+// Reaches Number.MAX_VALUE at n === 97 and returns Infinity for n >= 97
+var maxLength = function(n) {
+  var max = words.length;
+  while (n > 1) {
+    max *= words.length - n + 1;
+    n--;
+  }
+  return max;
+};
+
 // Get a random word / word-combo
-var word = function(numCombine) {
-  numCombine = numCombine || 1;
-  if (typeof numCombine !== 'number') { throw new Error('Not A Number!'); }
+var word = function(glue) {
+  glue = glue || 1;
+  if (typeof glue !== 'number') { throw new Error('Not A Number!'); }
   var word = getRandomWord();
 
-  if (numCombine > 1) {
-    for (var i = 1; i < numCombine; i++) {
+  if (glue > 1) {
+    for (var i = 1; i < glue; i++) {
       var uniqueCombo = false;
       while (!uniqueCombo) { uniqueCombo = dashJoin(word, getRandomWord()); }
       word = uniqueCombo;
@@ -29,19 +40,19 @@ var word = function(numCombine) {
 };
 
 // Get an array of unique words / word-combos
-var list = function(length, numCombine) {
-
-  if (length > words.length) {
-    throw new Error('Max list size is ' + words.length);
+var list = function(length, glue) {
+  if (length > maxLength(glue)) {
+    throw new Error('Max list length for [glue] === ' + glue +
+                    ' is ' + maxLength(glue));
   }
 
   length = length || 100;
-  numCombine = numCombine || 1;
+  glue = glue || 1;
 
   var returnWords = [];
 
   for (var i = 0; i < length; i++) {
-    var newWord = word(numCombine);
+    var newWord = word(glue);
     if (returnWords.indexOf(newWord) === -1) {
       returnWords.push(newWord);
     } else {
