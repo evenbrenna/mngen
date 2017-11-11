@@ -1,4 +1,4 @@
-# mnGen - Mnemonic Word Generator
+# mngen - Mnemonic Word Generator
 
 Spits out random words from
 [this](http://web.archive.org/web/20091003023606/http://tothink.com/mnemonic)
@@ -24,37 +24,28 @@ Or dogs. Sometimes you just need a few top-notch words thrown at you.
 
 ```js
 
-var mnGen = require('mngen');
+const mngen = require('mngen')
 
-mnGen.word();     // => 'tokyo'
-mnGen.word(3);    // => "office-piano-fabric"
+mngen()
+// => 'tokyo'
+mngen(1, 3)
+// => "office-piano-fabric"
 
-mnGen.list(3);    // => ['canoe', 'amigo', 'kermit']
-mnGen.list(3, 2); // => ['fuji-visa', 'kilo-lemon', 'baker-echo']
-mnGen.list(3, 2, '/'); // => ['fuji/visa', 'kilo/lemon', 'baker/echo']
+mngen(3)
+// => ['canoe', 'amigo', 'kermit']
+mngen(3, 2)
+// => ['fuji-visa', 'kilo-lemon', 'baker-echo']
+mngen(3, 2, '/')
+// => ['fuji/visa', 'kilo/lemon', 'baker/echo']
 
-mngen.list(2665057, 2); // => ERR: Max list length for [glue] === 2 is 2665056
+mngen(2665057, 2)
+// => ERR: Max list length for [glue] === 2 is 2665056
 ```
 
 ## API
 
 
-### .word([[glue], [separator]])
-
-Returns: `String`
-
-* Get a single random word
-* Give an integer `glue` to make it a dash-joined combo of multiple words.
-* Specify `separator` to customize separator between combos of multiple words.
-
-```js
-mnGen.word();  // => "eagle"
-mnGen.word(3); // => "office-piano-fabric"
-mnGen.word(3, '/'); // => "office/piano/fabric"
-```
-
-
-### .list([length, [glue], [separator]])
+### mngen([length, [glue], [separator]])
 
 Returns: `Array`
 
@@ -67,10 +58,10 @@ Returns: `Array`
   (See Usage for example)
 
 ```js
-nmGen.list();     // => An array of 100 unique words
-mnGen.list(3);    // => ['canoe', 'amigo', 'kermit']
-mnGen.list(3, 2); // => ['fuji-visa', 'kilo-lemon', 'baker-echo']
-mnGen.list(3, 2, '/'); // => ['fuji/visa', 'kilo/lemon', 'baker/echo']
+mngen();     // => An array of 100 unique words
+mngen(3);    // => ['canoe', 'amigo', 'kermit']
+mngen(3, 2); // => ['fuji-visa', 'kilo-lemon', 'baker-echo']
+mngen(3, 2, '/'); // => ['fuji/visa', 'kilo/lemon', 'baker/echo']
 ```
 
 
@@ -84,18 +75,18 @@ $ mngen
 # => tokyo
 
 $ mngen --glue 2
-# => "english-legal"
+# => english-legal
 
 $ mngen --glue 2 --separator /
-# => "dexter/toronto"
+# => dexter/toronto
 
 $ mngen --list 3
 # => canoe amigo kermit
 
 $ mngen --list 2 --glue 3
 # => oxford-soviet-rubber shave-deal-freddie
-
 ```
+
 ## TODO
 
 * Add options:
