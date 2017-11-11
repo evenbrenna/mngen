@@ -31,6 +31,7 @@ mnGen.word(3);    // => "office-piano-fabric"
 
 mnGen.list(3);    // => ['canoe', 'amigo', 'kermit']
 mnGen.list(3, 2); // => ['fuji-visa', 'kilo-lemon', 'baker-echo']
+mnGen.list(3, 2, '/'); // => ['fuji/visa', 'kilo/lemon', 'baker/echo']
 
 mngen.list(2665057, 2); // => ERR: Max list length for [glue] === 2 is 2665056
 ```
@@ -38,20 +39,22 @@ mngen.list(2665057, 2); // => ERR: Max list length for [glue] === 2 is 2665056
 ## API
 
 
-### .word([glue])
+### .word([[glue], [separator]])
 
 Returns: `String`
 
 * Get a single random word
 * Give an integer `glue` to make it a dash-joined combo of multiple words.
+* Specify `separator` to customize separator between combos of multiple words.
 
 ```js
 mnGen.word();  // => "eagle"
 mnGen.word(3); // => "office-piano-fabric"
+mnGen.word(3, '/'); // => "office/piano/fabric"
 ```
 
 
-### .list([length, [glue]])
+### .list([length, [glue], [separator]])
 
 Returns: `Array`
 
@@ -59,6 +62,7 @@ Returns: `Array`
 * Default `length` is 100
 * Array entries are unique.
 * Specify `glue` to make entries dash-joined combos of multiple words.
+* Specify `separator` to customize separator between combos of multiple words.
 * Throws error if `length` > possible unique entries given `glue`
   (See Usage for example)
 
@@ -66,6 +70,7 @@ Returns: `Array`
 nmGen.list();     // => An array of 100 unique words
 mnGen.list(3);    // => ['canoe', 'amigo', 'kermit']
 mnGen.list(3, 2); // => ['fuji-visa', 'kilo-lemon', 'baker-echo']
+mnGen.list(3, 2, '/'); // => ['fuji/visa', 'kilo/lemon', 'baker/echo']
 ```
 
 
@@ -81,6 +86,9 @@ $ mngen
 $ mngen --glue 2
 # => "english-legal"
 
+$ mngen --glue 2 --separator /
+# => "dexter/toronto"
+
 $ mngen --list 3
 # => canoe amigo kermit
 
@@ -91,7 +99,6 @@ $ mngen --list 2 --glue 3
 ## TODO
 
 * Add options:
-   * Choose "glue" character
    * Choose entry separator for list in cli (comma, newline, space, etc)
    * Custom word-lists
 
