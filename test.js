@@ -38,3 +38,13 @@ test(function(t) {
 
 	t.end();
 });
+
+test('custom separator', function (t) {
+	const word = mnGen.word(2, '/');
+	const list = mnGen.list(1, 2, '/')[0];
+	t.assert(word.indexOf('-') === -1);
+	t.assert(word.indexOf('/') !== -1);
+	t.assert(list.indexOf('-') === -1);
+	t.assert(list.indexOf('/') !== -1);
+	t.end();
+});
