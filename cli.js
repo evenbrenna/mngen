@@ -12,6 +12,9 @@ var cli = meow({
 		'  $ mngen --glue 2',
 		'  english-legal',
 		'',
+		'  $ mngen --glue 2 --separator /',
+		'  dexter/toronto',
+		'',
     '  $ mngen --list 3',
     '  canoe amigo kermit',
     '',
@@ -20,11 +23,16 @@ var cli = meow({
     '',
 		'Options',
 		'  --list [number]  Get a whitespace separated list of words',
-		'  --glue [number]  Make each word a dash-joined combo of words'
+		'  --glue [number]  Make each word a dash-joined combo of words',
+		'  --separator [string]  Character used to join combo of words'
 	]
 });
 
 var list = typeof cli.flags.list === 'boolean' ? 100 : cli.flags.list;
 var glue = cli.flags.glue || 1;
+var separator = cli.flags.separator || '-'
 
-console.log(cli.flags.list ? mnGen.list(list, glue).join(' ') : mnGen.word(glue));
+console.log(cli.flags.list
+	? mnGen.list(list, glue, separator).join(' ')
+	: mnGen.word(glue, separator)
+);
